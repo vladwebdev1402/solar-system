@@ -12,19 +12,21 @@ const MainPage = () => {
         <ambientLight intensity={1} />
         <directionalLight intensity={1} position={[10, 10, 10]} />
         {/* Sun */}
-        <Box position={{ x: 0, y: 0, z: 0 }} rotateSpeed={0.01} />
+        <Box radius={5} rotateSpeed={0.01} />
         {/* Mercury */}
         <Box
-          position={{ x: 5, y: 0, z: 0 }}
-          radius={5}
+          position={{ x: 10, y: 0, z: 0 }}
+          radius={1.5}
+          rotateRadius={10}
           rotateCenterSpeed={0.5}
           rotateSpeed={0.015}
         />
         {/* Venus */}
         <Box
-          position={{ x: 8, y: 1, z: 253 }}
+          position={{ x: 25, y: 0, z: 0 }}
           rotateSpeed={0.01}
-          radius={8}
+          radius={2}
+          rotateRadius={25}
           rotateCenterSpeed={0.4}
           addedAngle={Math.PI / 4}
         />
