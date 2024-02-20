@@ -1,10 +1,15 @@
+export interface IOrbite {
+  p: number;
+  e: number;
+  angleX: number;
+}
+
 export interface IAstronomicalObject {
   id: number;
-  p: number;
-  v: number;
-  e: number;
+  orbite: IOrbite;
+  circleShift: number;
   radiusOnbject: number;
-  rotateCenterSpeed: number;
+  rotateAroundCenterSpeed: number;
   rotateSpeed: number;
   name: string;
 }

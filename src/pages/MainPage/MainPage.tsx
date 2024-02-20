@@ -15,7 +15,7 @@ const MainPage = () => {
         {mockAstronomicalObject.map((astro) => (
           <AstronomicalObject astro={astro} key={astro.id} />
         ))}
-        <OrbitControls />
+        <OrbitControls makeDefault />
         <PerspectiveCamera makeDefault position={[350, 200, 300]} />
       </Canvas>
     </div>
