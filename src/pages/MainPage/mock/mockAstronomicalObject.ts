@@ -3,7 +3,7 @@ import { IAstronomicalObject } from '@/shared/types';
 export const mockAstronomicalObject: IAstronomicalObject[] = [
   {
     id: 0,
-    name: 'Sun',
+    name: 'Солнце',
     radiusOnbject: 5,
     rotateSpeed: 0.01,
     rotateCenterSpeed: 0,
@@ -13,7 +13,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   },
   {
     id: 1,
-    name: 'Mercury',
+    name: 'Меркурий',
     radiusOnbject: 1,
     rotateSpeed: 0.015,
     rotateCenterSpeed: 0.05,
@@ -23,8 +23,8 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   },
   {
     id: 2,
-    name: 'Venus',
-    radiusOnbject: 1.5,
+    name: 'Венера',
+    radiusOnbject: 1.9,
     rotateSpeed: 0.01,
     rotateCenterSpeed: 0.09,
     p: 72.3,
@@ -33,12 +33,22 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   },
   {
     id: 3,
-    name: 'Earth',
+    name: 'Земля',
     radiusOnbject: 2,
     rotateSpeed: 0.01,
     rotateCenterSpeed: 0.1,
     p: 100,
     v: 0,
     e: 0.0167,
+  },
+  {
+    id: 4,
+    name: 'Марс',
+    radiusOnbject: 1.7,
+    rotateSpeed: 0.01,
+    rotateCenterSpeed: 0.05,
+    p: 152,
+    v: 230,
+    e: 0.093,
   },
 ];

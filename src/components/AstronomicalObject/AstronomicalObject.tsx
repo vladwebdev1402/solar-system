@@ -1,10 +1,13 @@
 import { Mesh } from 'three';
 
-import { Trail } from '@react-three/drei';
+import { Line, Trail } from '@react-three/drei';
 import { ThreeEvent, useFrame } from '@react-three/fiber';
-import { FC, useRef, useState } from 'react';
+import { FC, useMemo, useRef, useState } from 'react';
 
 import { IAstronomicalObject } from '@/shared/types/IAstronomicalObject';
+
+import { calcEllipsePoints } from './utils/calcEllipsePoints';
+import { calcHalfAxis } from './utils/calcHalfAxis';
 
 interface BoxProps {
   astro: IAstronomicalObject;
@@ -16,13 +19,19 @@ const AstronomicalObject: FC<BoxProps> = ({ astro }) => {
   const angleRef = useRef<number>(astro.v);
   const [clicked, click] = useState(false);
 
+  const { xRadius, yRadius } = useMemo(
+    () => calcHalfAxis(astro.p, astro.e),
+    [astro]
+  );
+
+  const points = useMemo(() => {
+    return calcEllipsePoints(astro.p, astro.e);
+  }, [astro]);
+
   useFrame(() => {
     if (ref.current) {
       if (astro.rotateCenterSpeed !== 0) {
-        const { p, rotateCenterSpeed, e } = astro;
-        const f = p * e;
-        const xRadius = p + f;
-        const yRadius = p * Math.sqrt((1 - e) ^ 2);
+        const { rotateCenterSpeed } = astro;
         ref.current.position.x = Math.cos(angleRef.current) * xRadius;
         ref.current.position.z = Math.sin(angleRef.current) * yRadius;
         angleRef.current += Math.PI / (180 * (1 / rotateCenterSpeed));
@@ -34,7 +43,7 @@ const AstronomicalObject: FC<BoxProps> = ({ astro }) => {
   return (
     <>
       <Trail
-        width={6}
+        width={10}
         color={'hotpink'}
         length={100}
         decay={0.1}
@@ -59,6 +68,7 @@ const AstronomicalObject: FC<BoxProps> = ({ astro }) => {
           <meshStandardMaterial color={isHover ? 'hotpink' : 'orange'} />
         </mesh>
       </Trail>
+      <Line points={points} color={'gray'} lineWidth={0.3} />
     </>
   );
 };
