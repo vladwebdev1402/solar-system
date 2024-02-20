@@ -1,28 +1,31 @@
 import { Mesh } from 'three';
 
-import { Line, Plane, Trail } from '@react-three/drei';
+import { Line, Trail } from '@react-three/drei';
 import { ThreeEvent, useFrame } from '@react-three/fiber';
-import { FC, useMemo, useRef, useState } from 'react';
+import { FC, ReactNode, useMemo, useRef, useState } from 'react';
 
+import { useThreeHover } from '@/shared/hooks';
 import { IAstronomicalObject } from '@/shared/types/IAstronomicalObject';
 
 import { calcEllipsePoints } from './utils/calcEllipsePoints';
 import { calcHalfAxis } from './utils/calcHalfAxis';
 
-interface BoxProps {
+interface AstronomicalObjectrops {
   astro: IAstronomicalObject;
   isVisibleOrbit?: boolean;
   isVisibleTrail?: boolean;
   isAsteroid?: boolean;
+  children?: ReactNode;
 }
 
-const AstronomicalObject: FC<BoxProps> = ({
+const AstronomicalObject: FC<AstronomicalObjectrops> = ({
   astro,
   isVisibleOrbit = false,
   isVisibleTrail = false,
   isAsteroid = false,
+  children,
 }) => {
-  const [isHover, setIsHover] = useState(false);
+  const { isHover, onPointerLeave, onPointerOver } = useThreeHover();
   const [isClicked, setIsClicked] = useState(false);
 
   const astroRef = useRef<Mesh>(null);
@@ -46,7 +49,6 @@ const AstronomicalObject: FC<BoxProps> = ({
           Math.cos(angleRef.current) * xRadius + shiftX;
         astroRef.current.position.z =
           Math.sin(angleRef.current) * yRadius + shiftZ;
-
         angleRef.current += Math.PI / (180 * (1 / rotateAroundCenterSpeed));
       }
       astroRef.current.rotateY(astro.rotateSpeed);
@@ -55,16 +57,18 @@ const AstronomicalObject: FC<BoxProps> = ({
 
   if (isAsteroid)
     return (
-      <Plane rotation={[(Math.PI * astro.orbite.angleX) / 180, 0, 0]}>
-        <mesh ref={astroRef} position={[0, astro.orbite.shiftY || 0, 0]}>
+      <mesh
+        rotation={[(Math.PI * astro.orbite.angleX) / 180, 0, 0]}
+        position={[0, astro.orbite.shiftY || 0, 0]}>
+        <mesh ref={astroRef}>
           <sphereGeometry args={[astro.radiusOnbject, 64, 32]} />
           <meshStandardMaterial color={'white'} />
         </mesh>
-      </Plane>
+      </mesh>
     );
 
   return (
-    <Plane rotation={[(Math.PI * astro.orbite.angleX) / 180, 0, 0]}>
+    <mesh rotation={[(Math.PI * astro.orbite.angleX) / 180, 0, 0]}>
       <Trail
         width={isVisibleTrail ? 10 : 0}
         color={'hotpink'}
@@ -78,11 +82,9 @@ const AstronomicalObject: FC<BoxProps> = ({
             setIsClicked(!isClicked);
           }}
           scale={isClicked ? 1.5 : 1}
-          onPointerOver={(e: ThreeEvent<MouseEvent>) => {
-            e.stopPropagation();
-            setIsHover(true);
-          }}
-          onPointerLeave={() => setIsHover(false)}>
+          onPointerOver={onPointerOver}
+          onPointerLeave={onPointerLeave}>
+          {children}
           <sphereGeometry args={[astro.radiusOnbject, 64, 32]} />
           <meshStandardMaterial color={isHover ? 'hotpink' : 'orange'} />
         </mesh>
@@ -90,7 +92,7 @@ const AstronomicalObject: FC<BoxProps> = ({
       {isVisibleOrbit && (
         <Line points={points} color={'gray'} lineWidth={0.3} />
       )}
-    </Plane>
+    </mesh>
   );
 };
 
