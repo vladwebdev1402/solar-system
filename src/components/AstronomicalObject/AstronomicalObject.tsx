@@ -15,9 +15,10 @@ interface BoxProps {
 
 const AstronomicalObject: FC<BoxProps> = ({ astro }) => {
   const [isHover, setIsHover] = useState(false);
-  const ref = useRef<Mesh>(null);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const astroRef = useRef<Mesh>(null);
   const angleRef = useRef<number>(astro.circleShift);
-  const [clicked, click] = useState(false);
 
   const { xRadius, yRadius } = useMemo(
     () => calcHalfAxis(astro.orbite.p, astro.orbite.e),
@@ -25,40 +26,35 @@ const AstronomicalObject: FC<BoxProps> = ({ astro }) => {
   );
 
   const points = useMemo(() => {
-    return calcEllipsePoints(astro.orbite.p, astro.orbite.e);
+    return calcEllipsePoints(astro.orbite);
   }, [astro]);
 
   useFrame(() => {
-    if (ref.current) {
+    if (astroRef.current) {
       if (astro.rotateAroundCenterSpeed !== 0) {
+        const { shiftX = 0, shiftZ = 0 } = astro.orbite;
         const { rotateAroundCenterSpeed } = astro;
-        ref.current.position.x = Math.cos(angleRef.current) * xRadius;
-        ref.current.position.z = Math.sin(angleRef.current) * yRadius;
+        astroRef.current.position.x =
+          Math.cos(angleRef.current) * xRadius + shiftX;
+        astroRef.current.position.z =
+          Math.sin(angleRef.current) * yRadius + shiftZ;
 
         angleRef.current += Math.PI / (180 * (1 / rotateAroundCenterSpeed));
       }
-      ref.current.rotateY(astro.rotateSpeed);
+      astroRef.current.rotateY(astro.rotateSpeed);
     }
   });
 
   return (
     <Plane rotation={[(Math.PI * astro.orbite.angleX) / 180, 0, 0]}>
-      <Trail
-        width={10}
-        color={'hotpink'}
-        length={100}
-        decay={0.1}
-        local={false}
-        stride={0}
-        interval={1}
-        attenuation={(width) => width}>
+      <Trail width={10} color={'hotpink'} length={100} decay={0.1} interval={1}>
         <mesh
-          ref={ref}
+          ref={astroRef}
           onClick={(e: ThreeEvent<MouseEvent>) => {
             e.stopPropagation();
-            click(!clicked);
+            setIsClicked(!isClicked);
           }}
-          scale={clicked ? 1.5 : 1}
+          scale={isClicked ? 1.5 : 1}
           onPointerOver={(e: ThreeEvent<MouseEvent>) => {
             e.stopPropagation();
             setIsHover(true);

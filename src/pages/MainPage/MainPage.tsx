@@ -16,7 +16,11 @@ const MainPage = () => {
           <AstronomicalObject astro={astro} key={astro.id} />
         ))}
         <OrbitControls makeDefault />
-        <PerspectiveCamera makeDefault position={[350, 200, 300]} />
+        <PerspectiveCamera
+          makeDefault
+          position={[350, 200, 300]}
+          far={100000}
+        />
       </Canvas>
     </div>
   );

@@ -2,6 +2,9 @@ export interface IOrbite {
   p: number;
   e: number;
   angleX: number;
+  shiftX?: number;
+  shiftY?: number;
+  shiftZ?: number;
 }
 
 export interface IAstronomicalObject {
