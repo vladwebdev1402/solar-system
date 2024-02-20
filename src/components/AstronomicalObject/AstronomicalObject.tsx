@@ -11,9 +11,17 @@ import { calcHalfAxis } from './utils/calcHalfAxis';
 
 interface BoxProps {
   astro: IAstronomicalObject;
+  isVisibleOrbit?: boolean;
+  isVisibleTrail?: boolean;
+  isAsteroid?: boolean;
 }
 
-const AstronomicalObject: FC<BoxProps> = ({ astro }) => {
+const AstronomicalObject: FC<BoxProps> = ({
+  astro,
+  isVisibleOrbit = false,
+  isVisibleTrail = false,
+  isAsteroid = false,
+}) => {
   const [isHover, setIsHover] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
@@ -26,8 +34,8 @@ const AstronomicalObject: FC<BoxProps> = ({ astro }) => {
   );
 
   const points = useMemo(() => {
-    return calcEllipsePoints(astro.orbite);
-  }, [astro]);
+    return isVisibleOrbit ? calcEllipsePoints(astro.orbite) : [];
+  }, [astro, isVisibleOrbit]);
 
   useFrame(() => {
     if (astroRef.current) {
@@ -45,9 +53,24 @@ const AstronomicalObject: FC<BoxProps> = ({ astro }) => {
     }
   });
 
+  if (isAsteroid)
+    return (
+      <Plane rotation={[(Math.PI * astro.orbite.angleX) / 180, 0, 0]}>
+        <mesh ref={astroRef} position={[0, astro.orbite.shiftY || 0, 0]}>
+          <sphereGeometry args={[astro.radiusOnbject, 64, 32]} />
+          <meshStandardMaterial color={'white'} />
+        </mesh>
+      </Plane>
+    );
+
   return (
     <Plane rotation={[(Math.PI * astro.orbite.angleX) / 180, 0, 0]}>
-      <Trail width={10} color={'hotpink'} length={100} decay={0.1} interval={1}>
+      <Trail
+        width={isVisibleTrail ? 10 : 0}
+        color={'hotpink'}
+        length={100}
+        decay={0.1}
+        interval={1}>
         <mesh
           ref={astroRef}
           onClick={(e: ThreeEvent<MouseEvent>) => {
@@ -64,7 +87,9 @@ const AstronomicalObject: FC<BoxProps> = ({ astro }) => {
           <meshStandardMaterial color={isHover ? 'hotpink' : 'orange'} />
         </mesh>
       </Trail>
-      <Line points={points} color={'gray'} lineWidth={0.3} />
+      {isVisibleOrbit && (
+        <Line points={points} color={'gray'} lineWidth={0.3} />
+      )}
     </Plane>
   );
 };
