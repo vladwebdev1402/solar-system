@@ -2,7 +2,7 @@ import { Mesh } from 'three';
 
 import { Line, Trail } from '@react-three/drei';
 import { ThreeEvent, useFrame } from '@react-three/fiber';
-import { FC, ReactNode, useMemo, useRef, useState } from 'react';
+import { FC, useMemo, useRef, useState } from 'react';
 
 import { useThreeHover } from '@/shared/hooks';
 import { IAstronomicalObject } from '@/shared/types/IAstronomicalObject';
@@ -15,7 +15,6 @@ interface AstronomicalObjectrops {
   isVisibleOrbit?: boolean;
   isVisibleTrail?: boolean;
   isAsteroid?: boolean;
-  children?: ReactNode;
 }
 
 const AstronomicalObject: FC<AstronomicalObjectrops> = ({
@@ -23,11 +22,9 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
   isVisibleOrbit = false,
   isVisibleTrail = false,
   isAsteroid = false,
-  children,
 }) => {
   const { isHover, onPointerLeave, onPointerOver } = useThreeHover();
   const [isClicked, setIsClicked] = useState(false);
-
   const astroRef = useRef<Mesh>(null);
   const angleRef = useRef<number>(astro.circleShift);
 
@@ -84,7 +81,6 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
           scale={isClicked ? 1.5 : 1}
           onPointerOver={onPointerOver}
           onPointerLeave={onPointerLeave}>
-          {children}
           <sphereGeometry args={[astro.radiusOnbject, 64, 32]} />
           <meshStandardMaterial color={isHover ? 'hotpink' : 'orange'} />
         </mesh>

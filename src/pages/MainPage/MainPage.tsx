@@ -8,7 +8,7 @@ import st from './MainPage.module.scss';
 import { mockAstronomicalObject } from './mock/mockAstronomicalObject';
 import { generateAsteroid } from './utill/generateAsteroid';
 
-const COUNT = 50;
+const COUNT = 300;
 
 const MainPage = () => {
   const asteroids = useMemo(() => {
@@ -29,7 +29,8 @@ const MainPage = () => {
             astro={astro}
             key={astro.id}
             isVisibleOrbit
-            isVisibleTrail></AstronomicalObject>
+            isVisibleTrail
+          />
         ))}
         {asteroids.map((astro, idx) => (
           <AstronomicalObject key={idx} astro={astro} isAsteroid />
