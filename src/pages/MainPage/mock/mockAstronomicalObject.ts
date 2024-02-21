@@ -17,7 +17,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   {
     id: 1,
     name: 'Меркурий',
-    radiusOnbject: 1,
+    radiusOnbject: 1.5,
     rotateSpeed: 0.015,
     rotateAroundCenterSpeed: 0.05,
     orbite: {
@@ -31,7 +31,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   {
     id: 2,
     name: 'Венера',
-    radiusOnbject: 1.9,
+    radiusOnbject: 1.8,
     rotateSpeed: 0.01,
     rotateAroundCenterSpeed: 0.09,
     orbite: {
@@ -47,35 +47,78 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
     name: 'Земля',
     radiusOnbject: 2,
     rotateSpeed: 0.01,
-    rotateAroundCenterSpeed: 0.1,
+    rotateAroundCenterSpeed: 0.005,
     orbite: {
       angleX: 0.002,
       p: 100,
       e: 0.0167,
-      shiftZ: 3,
+      shiftZ: 4,
     },
     circleShift: 0,
+    children: [
+      {
+        id: 11,
+        name: 'Луна',
+        radiusOnbject: 0.3,
+        circleShift: 0,
+        rotateAroundCenterSpeed: 0.2,
+        rotateSpeed: 0.04,
+        orbite: {
+          angleX: 0,
+          e: 0.5,
+          p: 3,
+        },
+      },
+    ],
   },
   {
     id: 4,
     name: 'Марс',
-    radiusOnbject: 20,
+    radiusOnbject: 2,
     rotateSpeed: 0.01,
-    rotateAroundCenterSpeed: 0.05,
+    rotateAroundCenterSpeed: 0.02,
     orbite: {
-      angleX: 1.850,
+      angleX: 1.85,
       p: 152,
       e: 0.093,
       shiftZ: 28,
     },
     circleShift: 230,
+    children: [
+      {
+        id: 12,
+        name: 'Деймос',
+        radiusOnbject: 0.2,
+        circleShift: 0,
+        rotateAroundCenterSpeed: 0.1,
+        rotateSpeed: 0.04,
+        orbite: {
+          angleX: 0,
+          e: 0.5,
+          p: 4.5,
+        },
+      },
+      {
+        id: 13,
+        name: 'Фобос',
+        radiusOnbject: 0.2,
+        circleShift: 270,
+        rotateAroundCenterSpeed: 0.2,
+        rotateSpeed: 0.04,
+        orbite: {
+          angleX: 0,
+          e: 0.5,
+          p: 3,
+        },
+      },
+    ]
   },
   {
     id: 5,
     name: 'Юпитер',
-    radiusOnbject: 20,
+    radiusOnbject: 22.4,
     rotateSpeed: 0.01,
-    rotateAroundCenterSpeed: 0.05,
+    rotateAroundCenterSpeed: 0.01,
     orbite: {
       angleX: 1.304,
       p: 520,
@@ -83,6 +126,60 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       shiftZ: 50,
     },
     circleShift: 60,
+    children: [
+      {
+        id: 14,
+        name: 'Ио',
+        radiusOnbject: 1,
+        circleShift: 0,
+        rotateAroundCenterSpeed: 0.1,
+        rotateSpeed: 0.04,
+        orbite: {
+          angleX: 0.050,
+          e: 0.5,
+          p: 12.2,
+        },
+      },
+      {
+        id: 15,
+        name: 'Европа',
+        radiusOnbject: 1,
+        circleShift: 0,
+        rotateAroundCenterSpeed: 0.2,
+        rotateSpeed: 0.04,
+        orbite: {
+          angleX: 0.471,
+          e: 0.5,
+          p: 17.8,
+        },
+      },
+      {
+        id: 16,
+        name: 'Ганимед',
+        radiusOnbject: 1.8,
+        circleShift: 0,
+        rotateAroundCenterSpeed: 0.1,
+        rotateSpeed: 0.04,
+        orbite: {
+          angleX: 0.204,
+          e: 0.5,
+          p: 25.1,
+        },
+      },
+      {
+        id: 17,
+        name: 'Каллисто',
+        radiusOnbject: 1.5,
+        circleShift: 0,
+        rotateAroundCenterSpeed: 0.2,
+        rotateSpeed: 0.04,
+        orbite: {
+          angleX: 0.205,
+          e: 0.5,
+          p: 30.6,
+        },
+      },
+    ]
   },
   {
     id: 6,

@@ -1,4 +1,4 @@
-import { Mesh } from 'three';
+import { Mesh, SphereGeometry } from 'three';
 
 import { Line, Trail } from '@react-three/drei';
 import { ThreeEvent, useFrame } from '@react-three/fiber';
@@ -25,7 +25,9 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
 }) => {
   const { isHover, onPointerLeave, onPointerOver } = useThreeHover();
   const [isClicked, setIsClicked] = useState(false);
+
   const astroRef = useRef<Mesh>(null);
+  const sphereRef = useRef<SphereGeometry>(null);
   const angleRef = useRef<number>(astro.circleShift);
 
   const { xRadius, yRadius } = useMemo(
@@ -48,8 +50,8 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
           Math.sin(angleRef.current) * yRadius + shiftZ;
         angleRef.current += Math.PI / (180 * (1 / rotateAroundCenterSpeed));
       }
-      astroRef.current.rotateY(astro.rotateSpeed);
     }
+    sphereRef.current && sphereRef.current.rotateY(astro.rotateSpeed);
   });
 
   if (isAsteroid)
@@ -67,7 +69,7 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
   return (
     <mesh rotation={[(Math.PI * astro.orbite.angleX) / 180, 0, 0]}>
       <Trail
-        width={isVisibleTrail ? 10 : 0}
+        width={isVisibleTrail ? 5 : 0}
         color={'hotpink'}
         length={100}
         decay={0.1}
@@ -78,11 +80,18 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
             e.stopPropagation();
             setIsClicked(!isClicked);
           }}
-          scale={isClicked ? 1.5 : 1}
+          scale={2}
           onPointerOver={onPointerOver}
           onPointerLeave={onPointerLeave}>
-          <sphereGeometry args={[astro.radiusOnbject, 64, 32]} />
+          <sphereGeometry
+            args={[astro.radiusOnbject / 2, 64, 32]}
+            ref={sphereRef}
+          />
           <meshStandardMaterial color={isHover ? 'hotpink' : 'orange'} />
+          {astro.children &&
+            astro.children.map((astro) => (
+              <AstronomicalObject key={astro.id} astro={astro} />
+            ))}
         </mesh>
       </Trail>
       {isVisibleOrbit && (

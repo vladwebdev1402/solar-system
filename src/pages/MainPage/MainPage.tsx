@@ -8,16 +8,32 @@ import st from './MainPage.module.scss';
 import { mockAstronomicalObject } from './mock/mockAstronomicalObject';
 import { generateAsteroid } from './utill/generateAsteroid';
 
-const COUNT = 300;
-
 const MainPage = () => {
   const asteroids = useMemo(() => {
     const array = [];
-    for (let i = 0; i < COUNT; i++) {
+    for (let i = 0; i < 1000; i++) {
       array.push(generateAsteroid());
     }
     return array;
   }, []);
+
+  // const [asteroids, setAsteroids] = useState<IAstronomicalObject[]>([]);
+  // const countAsteroidRef = useRef(0);
+
+  // useEffect(() => {
+  //   const addAsteroids = () => {
+  //     const addedAsteroids = [];
+
+  //     do {
+  //       countAsteroidRef.current++;
+  //       addedAsteroids.push(generateAsteroid());
+  //     } while (countAsteroidRef.current % 50 != 0);
+
+  //     setAsteroids([...asteroids, ...addedAsteroids]);
+  //   };
+
+  //   if (asteroids.length < 500) setTimeout(() => addAsteroids(), 50);
+  // }, [countAsteroidRef, setAsteroids, asteroids]);
 
   return (
     <div className={st.canvas}>
@@ -35,6 +51,7 @@ const MainPage = () => {
         {asteroids.map((astro, idx) => (
           <AstronomicalObject key={idx} astro={astro} isAsteroid />
         ))}
+
         <OrbitControls makeDefault />
         <PerspectiveCamera makeDefault position={[350, 200, 300]} far={20000} />
       </Canvas>

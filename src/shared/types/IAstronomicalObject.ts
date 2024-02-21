@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface IOrbite {
   p: number;
   e: number;
@@ -15,4 +17,6 @@ export interface IAstronomicalObject {
   rotateAroundCenterSpeed: number;
   rotateSpeed: number;
   name: string;
+  children?: IAstronomicalObject[];
+  model?: ReactNode;
 }
