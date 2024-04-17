@@ -16,4 +16,5 @@ export interface IAstronomicalObject {
   rotateSpeed: number;
   name: string;
   pathModel?: string;
+  children?: IAstronomicalObject[];
 }

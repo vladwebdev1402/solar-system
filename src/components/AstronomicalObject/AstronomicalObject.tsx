@@ -25,7 +25,9 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
 }) => {
   const { isHover, onPointerLeave, onPointerOver } = useThreeHover();
   const [isClicked, setIsClicked] = useState(false);
+
   const astroRef = useRef<Mesh>(null);
+  const sphereRef = useRef<Mesh>(null);
   const angleRef = useRef<number>(astro.circleShift);
 
   const { xRadius, yRadius } = useMemo(
@@ -48,8 +50,8 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
           Math.sin(angleRef.current) * yRadius + shiftZ;
         angleRef.current += Math.PI / (180 * (1 / rotateAroundCenterSpeed));
       }
-      astroRef.current.rotateY(astro.rotateSpeed);
     }
+    sphereRef.current && sphereRef.current.rotateY(astro.rotateSpeed);
   });
 
   if (isAsteroid)
@@ -75,18 +77,24 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
         scale={isClicked ? 1.5 : 1}
         onPointerOver={onPointerOver}
         onPointerLeave={onPointerLeave}>
-        {astro.pathModel ? (
-          <AstronomicalModel
-            path={astro.pathModel}
-            size={astro.radiusOnbject}
-          />
-        ) : (
-          <sphereGeometry args={[astro.radiusOnbject, 64, 32]} />
-        )}
+        <mesh ref={sphereRef}>
+          {astro.pathModel ? (
+            <AstronomicalModel
+              path={astro.pathModel}
+              size={astro.radiusOnbject}
+            />
+          ) : (
+            <sphereGeometry args={[astro.radiusOnbject / 2, 64, 32]} />
+          )}
+          {!astro.pathModel && (
+            <meshStandardMaterial color={isHover ? 'hotpink' : 'orange'} />
+          )}
+        </mesh>
 
-        {!astro.pathModel && (
-          <meshStandardMaterial color={isHover ? 'hotpink' : 'orange'} />
-        )}
+        {astro.children &&
+          astro.children.map((astro) => (
+            <AstronomicalObject key={astro.id} astro={astro} />
+          ))}
       </mesh>
       {isVisibleOrbit && (
         <Line points={points} color={'gray'} lineWidth={0.3} />
