@@ -25,12 +25,7 @@ const MainPage = () => {
         <ambientLight intensity={0.5} color={'white'} />
         <pointLight intensity={50000} color={'#f4ff00'} position={[0, 0, 0]} />
         {mockAstronomicalObject.map((astro) => (
-          <AstronomicalObject
-            astro={astro}
-            key={astro.id}
-            isVisibleOrbit
-            isVisibleTrail
-          />
+          <AstronomicalObject astro={astro} key={astro.id} isVisibleOrbit />
         ))}
         {asteroids.map((astro, idx) => (
           <AstronomicalObject key={idx} astro={astro} isAsteroid />

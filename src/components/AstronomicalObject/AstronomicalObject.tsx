@@ -1,12 +1,13 @@
 import { Mesh } from 'three';
 
-import { Line, Trail } from '@react-three/drei';
+import { Line } from '@react-three/drei';
 import { ThreeEvent, useFrame } from '@react-three/fiber';
 import { FC, useMemo, useRef, useState } from 'react';
 
 import { useThreeHover } from '@/shared/hooks';
 import { IAstronomicalObject } from '@/shared/types/IAstronomicalObject';
 
+import AstronomicalModel from '../AstronomicalModel';
 import { calcEllipsePoints } from './utils/calcEllipsePoints';
 import { calcHalfAxis } from './utils/calcHalfAxis';
 
@@ -20,7 +21,6 @@ interface AstronomicalObjectrops {
 const AstronomicalObject: FC<AstronomicalObjectrops> = ({
   astro,
   isVisibleOrbit = false,
-  isVisibleTrail = false,
   isAsteroid = false,
 }) => {
   const { isHover, onPointerLeave, onPointerOver } = useThreeHover();
@@ -66,25 +66,28 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
 
   return (
     <mesh rotation={[(Math.PI * astro.orbite.angleX) / 180, 0, 0]}>
-      <Trail
-        width={isVisibleTrail ? 10 : 0}
-        color={'hotpink'}
-        length={100}
-        decay={0.1}
-        interval={1}>
-        <mesh
-          ref={astroRef}
-          onClick={(e: ThreeEvent<MouseEvent>) => {
-            e.stopPropagation();
-            setIsClicked(!isClicked);
-          }}
-          scale={isClicked ? 1.5 : 1}
-          onPointerOver={onPointerOver}
-          onPointerLeave={onPointerLeave}>
+      <mesh
+        ref={astroRef}
+        onClick={(e: ThreeEvent<MouseEvent>) => {
+          e.stopPropagation();
+          setIsClicked(!isClicked);
+        }}
+        scale={isClicked ? 1.5 : 1}
+        onPointerOver={onPointerOver}
+        onPointerLeave={onPointerLeave}>
+        {astro.pathModel ? (
+          <AstronomicalModel
+            path={astro.pathModel}
+            size={astro.radiusOnbject}
+          />
+        ) : (
           <sphereGeometry args={[astro.radiusOnbject, 64, 32]} />
+        )}
+
+        {!astro.pathModel && (
           <meshStandardMaterial color={isHover ? 'hotpink' : 'orange'} />
-        </mesh>
-      </Trail>
+        )}
+      </mesh>
       {isVisibleOrbit && (
         <Line points={points} color={'gray'} lineWidth={0.3} />
       )}

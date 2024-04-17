@@ -15,4 +15,5 @@ export interface IAstronomicalObject {
   rotateAroundCenterSpeed: number;
   rotateSpeed: number;
   name: string;
+  pathModel?: string;
 }

@@ -5,7 +5,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
     id: 0,
     name: 'Солнце',
     radiusOnbject: 10,
-    rotateSpeed: 0.01,
+    rotateSpeed: 0.005,
     rotateAroundCenterSpeed: 0,
     orbite: {
       angleX: 0,
@@ -13,6 +13,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       p: 0,
     },
     circleShift: 0,
+    pathModel: './sun/scene.gltf',
   },
   {
     id: 1,
@@ -63,7 +64,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
     rotateSpeed: 0.01,
     rotateAroundCenterSpeed: 0.05,
     orbite: {
-      angleX: 1.850,
+      angleX: 1.85,
       p: 152,
       e: 0.093,
       shiftZ: 28,
