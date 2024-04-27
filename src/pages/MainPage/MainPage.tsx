@@ -11,7 +11,7 @@ import { SolarSystem } from '@/components/SolarSystem';
 import { AstronomicalSettings } from '@/components/AstronomicalSettings';
 
 const MainPage = () => {
-  const [current, setCurrent] = useState<null | number>(11);
+  const [current, setCurrent] = useState<null | number>(null);
   const [settings, setSettings] = useState<SystemSettingsState>({
     speed: 1,
     isShowOrbit: true,
@@ -30,8 +30,8 @@ const MainPage = () => {
       value={{ current: current, setCurrent: onCurrent }}>
       <SystemSettingsContext.Provider
         value={{ state: settings, setSettings: onSettings }}>
-        {/* <AstronomicalInfo /> */}
-        {/* <SolarSystem /> */}
+        <AstronomicalInfo />
+        <SolarSystem />
         <AstronomicalSettings />
       </SystemSettingsContext.Provider>
     </CurrentObjectContext.Provider>

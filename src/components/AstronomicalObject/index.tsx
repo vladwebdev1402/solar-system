@@ -9,13 +9,12 @@ import { IAstronomicalObject } from '@/shared/types/IAstronomicalObject';
 
 import { calcEllipsePoints } from './utils/calcEllipsePoints';
 import { calcHalfAxis } from './utils/calcHalfAxis';
-import { CurrentObjectContext } from '@/context';
+import { CurrentObjectContext, SystemSettingsContext } from '@/context';
 import { AstronomicalModel } from '@/shared/ui/AstronomucalModel';
 
 interface AstronomicalObjectrops {
   astro: IAstronomicalObject;
   isVisibleOrbit?: boolean;
-  isVisibleTrail?: boolean;
   isAsteroid?: boolean;
 }
 
@@ -26,6 +25,9 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
 }) => {
   const { isHover, onPointerLeave, onPointerOver } = useThreeHover();
   const { setCurrent } = useContext(CurrentObjectContext);
+  const {
+    state: { speed, isShowOrbit },
+  } = useContext(SystemSettingsContext);
 
   const astroRef = useRef<Mesh>(null);
   const sphereRef = useRef<Mesh>(null);
@@ -49,10 +51,11 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
           Math.cos(angleRef.current) * xRadius + shiftX;
         astroRef.current.position.z =
           Math.sin(angleRef.current) * yRadius + shiftZ;
-        angleRef.current += Math.PI / (180 * (1 / rotateAroundCenterSpeed));
+        angleRef.current +=
+          Math.PI / (180 * (1 / (rotateAroundCenterSpeed * speed)));
       }
     }
-    sphereRef.current && sphereRef.current.rotateY(astro.rotateSpeed);
+    sphereRef.current && sphereRef.current.rotateY(astro.rotateSpeed * speed);
   });
 
   const onObjectClick = () => {
@@ -101,7 +104,7 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
             <AstronomicalObject key={astro.id} astro={astro} />
           ))}
       </mesh>
-      {isVisibleOrbit && (
+      {isVisibleOrbit && isShowOrbit && (
         <Line points={points} color={'gray'} lineWidth={0.3} />
       )}
     </mesh>

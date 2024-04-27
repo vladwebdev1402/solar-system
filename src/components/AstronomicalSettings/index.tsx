@@ -33,7 +33,7 @@ const AstronomicalSettings = () => {
         <FilterItem name="Скорость" value={state.speed}>
           <Slider
             min={0}
-            max={2}
+            max={3}
             step={0.1}
             value={state.speed}
             onChange={onSliderChange}

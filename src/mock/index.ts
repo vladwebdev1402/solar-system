@@ -14,7 +14,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       p: 0,
     },
     circleShift: 0,
-    pathModel: 'sun',
+    // pathModel: 'sun',
     ambient: 0.8,
   },
   {
@@ -45,7 +45,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       e: 0.2056,
       shiftZ: 16,
     },
-    pathModel: 'mercury',
+    // pathModel: 'mercury',
     circleShift: 23,
   },
   {
@@ -60,7 +60,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       e: 0.0068,
       shiftZ: 0.09,
     },
-    pathModel: 'venus',
+    // pathModel: 'venus',
     circleShift: 30,
   },
   {
@@ -92,7 +92,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       shiftZ: 4,
     },
     circleShift: 0,
-    pathModel: 'earth',
+    // pathModel: 'earth',
     children: [
       {
         id: 11,
@@ -101,7 +101,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
         circleShift: 0,
         rotateAroundCenterSpeed: 0.2,
         rotateSpeed: 0.04,
-        pathModel: 'moon',
+        // pathModel: 'moon',
         orbite: {
           angleX: 0,
           e: 0.5,
@@ -123,7 +123,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       shiftZ: 28,
     },
     circleShift: 230,
-    pathModel: 'mars',
+    // pathModel: 'mars',
     children: [
       {
         id: 12,
@@ -159,7 +159,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
     radiusOnbject: 4.4,
     rotateSpeed: 0.01,
     rotateAroundCenterSpeed: 0.01,
-    pathModel: 'jupiter',
+    // pathModel: 'jupiter',
     orbite: {
       angleX: 1.304,
       p: 520,
@@ -228,7 +228,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
     radiusOnbject: 4.4,
     rotateSpeed: 0.01,
     rotateAroundCenterSpeed: 0.01,
-    pathModel: 'saturn',
+    // pathModel: 'saturn',
     orbite: {
       angleX: 2.486,
       p: 953,
@@ -249,7 +249,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       e: 0.047,
       shiftZ: 171,
     },
-    pathModel: 'uranus',
+    // pathModel: 'uranus',
     circleShift: 320,
   },
   {
@@ -265,7 +265,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       shiftZ: 67,
     },
     circleShift: 11,
-    pathModel: 'neptune',
+    // pathModel: 'neptune',
   },
   {
     id: 10,
