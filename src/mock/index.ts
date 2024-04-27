@@ -14,7 +14,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       p: 0,
     },
     circleShift: 0,
-    // pathModel: 'sun',
+    pathModel: 'sun',
     ambient: 0.8,
   },
   {

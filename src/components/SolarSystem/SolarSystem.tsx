@@ -7,6 +7,7 @@ import { mockAstronomicalObject } from '@/mock';
 
 import { generateAsteroid } from './utill/generateAsteroid';
 import st from './style.module.scss';
+import { Skybox } from '../Skybox';
 
 const SolarSystem = () => {
   const asteroids = useMemo(() => {
@@ -31,6 +32,7 @@ const SolarSystem = () => {
 
         <OrbitControls makeDefault />
         <PerspectiveCamera makeDefault position={[350, 200, 300]} far={20000} />
+        <Skybox />
       </Canvas>
     </div>
   );
