@@ -23,7 +23,10 @@ export function Jupiter(props: JSX.IntrinsicElements['group']) {
   return (
     <group {...props} dispose={null}>
       <group name="Scene">
-        <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={1}>
+        <group
+          name="Sketchfab_model"
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={0.7}>
           <group name="Root">
             <group name="Armature">
               <primitive object={nodes.Armature_rootJoint} />

@@ -6,7 +6,7 @@ import { AstronomicalInfo } from '@/components/AstronomicalInfo';
 import { SolarSystem } from '@/components/SolarSystem';
 
 const MainPage = () => {
-  const [current, setCurrent] = useState<null | number>(1);
+  const [current, setCurrent] = useState<null | number>(11);
 
   const onCurrent = (id: number | null) => {
     setCurrent(id);
@@ -16,7 +16,7 @@ const MainPage = () => {
     <CurrentObjectContext.Provider
       value={{ current: current, setCurrent: onCurrent }}>
       <AstronomicalInfo />
-      {/* <SolarSystem /> */}
+      <SolarSystem />
     </CurrentObjectContext.Provider>
   );
 };

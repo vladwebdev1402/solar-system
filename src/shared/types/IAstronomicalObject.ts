@@ -7,6 +7,7 @@ export type TModelPath =
   | 'neptune'
   | 'saturn'
   | 'uranus'
+  | 'moon'
   | 'venus';
 
 export interface IOrbite {

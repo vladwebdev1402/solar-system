@@ -5,6 +5,7 @@ import {
   Jupiter,
   Mars,
   Mercury,
+  Moon,
   Neptune,
   Saturn,
   Sun,
@@ -62,6 +63,11 @@ const AstronomicalModel: FC<Props> = ({ pathModel, scale }) => {
     venus: (
       <group scale={scale}>
         <Venus />
+      </group>
+    ),
+    moon: (
+      <group scale={scale}>
+        <Moon />
       </group>
     ),
   }[pathModel];

@@ -7,3 +7,4 @@ export * from "./Saturn";
 export * from "./Sun";
 export * from "./Uranus";
 export * from "./Venus";
+export * from "./Moon";

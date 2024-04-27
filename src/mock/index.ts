@@ -101,6 +101,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
         circleShift: 0,
         rotateAroundCenterSpeed: 0.2,
         rotateSpeed: 0.04,
+        pathModel: 'moon',
         orbite: {
           angleX: 0,
           e: 0.5,
