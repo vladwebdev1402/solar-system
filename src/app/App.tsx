@@ -1,12 +1,14 @@
-import { MainPage } from '@/pages/MainPage';
+import { Suspense } from 'react';
+
+import { MainPage, MainPageSuspense } from '@/pages';
 
 import './fonts/fonts.scss';
 
 function App() {
   return (
-    <div>
+    <Suspense fallback={<MainPageSuspense />}>
       <MainPage />
-    </div>
+    </Suspense>
   );
 }
 

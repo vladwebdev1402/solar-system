@@ -1,0 +1,32 @@
+.suspense {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message {
+    color: white;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.loader {
+    margin: 24px auto 0 auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 3px solid rgb(168, 166, 166);
+    border-top: 0px;
+    border-right: 0px;
+    animation: loading .6s linear 0s infinite;
+}
+
+@keyframes loading {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 360deg;
+    }
+}
