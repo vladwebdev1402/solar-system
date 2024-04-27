@@ -7,8 +7,8 @@ import { IAstronomicalObject } from '@/shared/types';
 import { Modal, AstronomicalModel } from '@/shared/ui';
 import { searchObject } from '@/helpers';
 
-import { mockAstronomicalObject } from '../SolarSystem/mock';
 import st from './style.module.scss';
+import { mockAstronomicalObject } from '@/mock';
 
 const AstronomicalInfo = () => {
   const { current, setCurrent } = useContext(CurrentObjectContext);
@@ -26,18 +26,20 @@ const AstronomicalInfo = () => {
       }}>
       {object !== null && (
         <div className={st.body}>
-          <div className={st.header}>
+          <div>
             <div className={st.name}>{object.name}</div>
             {object.pathModel && (
               <div className={st.model}>
                 <Canvas>
                   <ambientLight intensity={2} color={'white'} />
                   <OrbitControls />
-                  <AstronomicalModel pathModel={'venus'} scale={1} />
+                  <AstronomicalModel pathModel={object.pathModel} scale={1.5} />
                 </Canvas>
               </div>
             )}
           </div>
+
+          <div className={st.description}></div>
         </div>
       )}
     </Modal>

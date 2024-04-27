@@ -3,8 +3,8 @@ import { Canvas } from '@react-three/fiber';
 import { useMemo } from 'react';
 
 import { AstronomicalObject } from '@/components/AstronomicalObject';
+import { mockAstronomicalObject } from '@/mock';
 
-import { mockAstronomicalObject } from './mock';
 import { generateAsteroid } from './utill/generateAsteroid';
 import st from './style.module.scss';
 

@@ -29,4 +29,8 @@ export interface IAstronomicalObject {
   pathModel?: TModelPath;
   ambient?: number;
   children?: IAstronomicalObject[];
+  description?: {
+    paragraphs: string[];
+    characteristics: { name: string; content: string }[];
+  };
 }
