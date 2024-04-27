@@ -108,4 +108,4 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
   );
 };
 
-export default AstronomicalObject;
+export { AstronomicalObject };

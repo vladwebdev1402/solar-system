@@ -1,13 +1,12 @@
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { AstronomicalObject } from '@/components/AstronomicalObject';
 
-import { mockAstronomicalObject } from './mock/mockAstronomicalObject';
-import st from './style.module.scss';
+import { mockAstronomicalObject } from './mock';
 import { generateAsteroid } from './utill/generateAsteroid';
-import { searchObject } from './utill/searchObject';
+import st from './style.module.scss';
 
 const SolarSystem = () => {
   const asteroids = useMemo(() => {
@@ -16,10 +15,6 @@ const SolarSystem = () => {
       array.push(generateAsteroid());
     }
     return array;
-  }, []);
-
-  useEffect(() => {
-    console.log(searchObject(11, mockAstronomicalObject));
   }, []);
 
   return (

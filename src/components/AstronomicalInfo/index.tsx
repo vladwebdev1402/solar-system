@@ -4,12 +4,11 @@ import { OrbitControls } from '@react-three/drei';
 
 import { CurrentObjectContext } from '@/context';
 import { IAstronomicalObject } from '@/shared/types';
-import { Modal } from '@/shared/ui';
+import { Modal, AstronomicalModel } from '@/shared/ui';
+import { searchObject } from '@/helpers';
 
-import { mockAstronomicalObject } from '../SolarSystem/mock/mockAstronomicalObject';
-import { searchObject } from '../SolarSystem/utill/searchObject';
+import { mockAstronomicalObject } from '../SolarSystem/mock';
 import st from './style.module.scss';
-import { AstronomicalModel } from '@/shared/ui/AstronomucalModel';
 
 const AstronomicalInfo = () => {
   const { current, setCurrent } = useContext(CurrentObjectContext);
