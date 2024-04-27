@@ -4,7 +4,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   {
     id: 0,
     name: 'Солнце',
-    radiusOnbject: 8,
+    radiusOnbject: 10,
     rotateSpeed: 0.001,
     rotateAroundCenterSpeed: 0,
     orbite: {
@@ -19,7 +19,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   {
     id: 1,
     name: 'Меркурий',
-    radiusOnbject: 0.4,
+    radiusOnbject: 1,
     rotateSpeed: 0.015,
     rotateAroundCenterSpeed: 0.05,
     orbite: {
@@ -49,7 +49,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   {
     id: 3,
     name: 'Земля',
-    radiusOnbject: 2,
+    radiusOnbject: 1,
     rotateSpeed: 0.01,
     rotateAroundCenterSpeed: 0.005,
     orbite: {
@@ -59,7 +59,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       shiftZ: 4,
     },
     circleShift: 0,
-    pathModel: './earth/scene.gltf',
+    // pathModel: './earth/scene.gltf',
     children: [
       {
         id: 11,
@@ -191,7 +191,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   {
     id: 6,
     name: 'Сатурн',
-    radiusOnbject: 0.04,
+    radiusOnbject: 4.4,
     rotateSpeed: 0.01,
     rotateAroundCenterSpeed: 0.01,
     pathModel: './saturn/scene.gltf',
@@ -206,7 +206,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   {
     id: 7,
     name: 'Уран',
-    radiusOnbject: 20,
+    radiusOnbject: 5,
     rotateSpeed: 0,
     rotateAroundCenterSpeed: 0.005,
     orbite: {
@@ -221,7 +221,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   {
     id: 8,
     name: 'Нептун',
-    radiusOnbject: 20,
+    radiusOnbject: 5,
     rotateSpeed: 0.01,
     rotateAroundCenterSpeed: 0.05,
     orbite: {
@@ -236,7 +236,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
   {
     id: 10,
     name: 'Плутон',
-    radiusOnbject: 20,
+    radiusOnbject: 25,
     rotateSpeed: 0.01,
     rotateAroundCenterSpeed: 0.05,
     orbite: {
