@@ -11,4 +11,4 @@ const AstronomicalModel: FC<Props> = ({ path, size }) => {
   return <primitive object={model.scene} scale={size} />;
 };
 
-export default AstronomicalModel;
+export { AstronomicalModel };

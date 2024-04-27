@@ -7,7 +7,7 @@ import { FC, useMemo, useRef } from 'react';
 import { useThreeHover } from '@/shared/hooks';
 import { IAstronomicalObject } from '@/shared/types/IAstronomicalObject';
 
-import AstronomicalModel from '../AstronomicalModel';
+import { AstronomicalModel } from '../AstronomicalModel';
 import { calcEllipsePoints } from './utils/calcEllipsePoints';
 import { calcHalfAxis } from './utils/calcHalfAxis';
 

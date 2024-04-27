@@ -13,7 +13,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       p: 0,
     },
     circleShift: 0,
-    pathModel: './sun/scene.gltf',
+    // pathModel: './sun/scene.gltf',
     ambient: 0.8,
   },
   {
@@ -43,7 +43,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       e: 0.0068,
       shiftZ: 0.09,
     },
-    pathModel: './venus/scene.gltf',
+    // pathModel: './venus/scene.gltf',
     circleShift: 30,
   },
   {
@@ -59,7 +59,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       shiftZ: 4,
     },
     circleShift: 0,
-    // pathModel: './earth/scene.gltf',
+    // // pathModel: './earth/scene.gltf',
     children: [
       {
         id: 11,
@@ -89,7 +89,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       shiftZ: 28,
     },
     circleShift: 230,
-    pathModel: './mars/scene.gltf',
+    // pathModel: './mars/scene.gltf',
     children: [
       {
         id: 12,
@@ -125,7 +125,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
     radiusOnbject: 4.4,
     rotateSpeed: 0.01,
     rotateAroundCenterSpeed: 0.01,
-    pathModel: './jupiter/scene.gltf',
+    // pathModel: './jupiter/scene.gltf',
     orbite: {
       angleX: 1.304,
       p: 520,
@@ -194,7 +194,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
     radiusOnbject: 4.4,
     rotateSpeed: 0.01,
     rotateAroundCenterSpeed: 0.01,
-    pathModel: './saturn/scene.gltf',
+    // pathModel: './saturn/scene.gltf',
     orbite: {
       angleX: 2.486,
       p: 953,
@@ -215,7 +215,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       e: 0.047,
       shiftZ: 171,
     },
-    pathModel: './uranus/scene.gltf',
+    // pathModel: './uranus/scene.gltf',
     circleShift: 320,
   },
   {
@@ -231,7 +231,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       shiftZ: 67,
     },
     circleShift: 11,
-    pathModel: './neptune/scene.gltf',
+    // pathModel: './neptune/scene.gltf',
   },
   {
     id: 10,

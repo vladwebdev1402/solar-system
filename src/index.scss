@@ -1,17 +1,22 @@
-*, *::after, *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #1f1f1f;
+  background-color: #1f1f1f;
 }
 
 .hover {
-    cursor: pointer;
+  cursor: pointer;
+}
+.stop_scroll {
+  overflow: hidden;
 }
 
 #leva__root > * {
-    width: 400px;
-  }
+  width: 400px;
+}
