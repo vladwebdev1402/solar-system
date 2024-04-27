@@ -2,14 +2,15 @@ import { Mesh } from 'three';
 
 import { Line } from '@react-three/drei';
 import { ThreeEvent, useFrame } from '@react-three/fiber';
-import { FC, useMemo, useRef } from 'react';
+import { FC, useContext, useMemo, useRef } from 'react';
 
 import { useThreeHover } from '@/shared/hooks';
 import { IAstronomicalObject } from '@/shared/types/IAstronomicalObject';
 
-import { AstronomicalModel } from '../AstronomicalModel';
 import { calcEllipsePoints } from './utils/calcEllipsePoints';
 import { calcHalfAxis } from './utils/calcHalfAxis';
+import { CurrentObjectContext } from '@/context';
+import { AstronomicalModel } from '@/shared/ui/AstronomucalModel';
 
 interface AstronomicalObjectrops {
   astro: IAstronomicalObject;
@@ -24,6 +25,7 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
   isAsteroid = false,
 }) => {
   const { isHover, onPointerLeave, onPointerOver } = useThreeHover();
+  const { setCurrent } = useContext(CurrentObjectContext);
 
   const astroRef = useRef<Mesh>(null);
   const sphereRef = useRef<Mesh>(null);
@@ -53,6 +55,10 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
     sphereRef.current && sphereRef.current.rotateY(astro.rotateSpeed);
   });
 
+  const onObjectClick = () => {
+    if (setCurrent) setCurrent(astro.id);
+  };
+
   if (isAsteroid)
     return (
       <mesh
@@ -71,14 +77,15 @@ const AstronomicalObject: FC<AstronomicalObjectrops> = ({
         ref={astroRef}
         onClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
+          onObjectClick();
         }}
         onPointerOver={onPointerOver}
         onPointerLeave={onPointerLeave}>
         <mesh ref={sphereRef}>
           {astro.pathModel ? (
             <AstronomicalModel
-              path={astro.pathModel}
-              size={astro.radiusOnbject}
+              pathModel={astro.pathModel}
+              scale={astro.radiusOnbject}
             />
           ) : (
             <sphereGeometry args={[astro.radiusOnbject / 2, 64, 32]} />

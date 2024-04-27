@@ -1,3 +1,14 @@
+export type TModelPath =
+  | 'sun'
+  | 'earth'
+  | 'jupiter'
+  | 'mars'
+  | 'mercury'
+  | 'neptune'
+  | 'saturn'
+  | 'uranus'
+  | 'venus';
+
 export interface IOrbite {
   p: number;
   e: number;
@@ -15,7 +26,7 @@ export interface IAstronomicalObject {
   rotateAroundCenterSpeed: number;
   rotateSpeed: number;
   name: string;
-  pathModel?: string;
+  pathModel?: TModelPath;
   ambient?: number;
   children?: IAstronomicalObject[];
 }

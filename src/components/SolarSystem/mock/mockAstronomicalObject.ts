@@ -13,7 +13,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       p: 0,
     },
     circleShift: 0,
-    // pathModel: './sun/scene.gltf',
+    pathModel: 'sun',
     ambient: 0.8,
   },
   {
@@ -28,7 +28,7 @@ export const mockAstronomicalObject: IAstronomicalObject[] = [
       e: 0.2056,
       shiftZ: 16,
     },
-    pathModel: './mercury/scene.gltf',
+    pathModel: 'mercury',
     circleShift: 23,
   },
   {

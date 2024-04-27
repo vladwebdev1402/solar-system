@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 
 import { CurrentObjectContext } from '@/context';
 import { IAstronomicalObject } from '@/shared/types';
@@ -8,13 +9,11 @@ import { Modal } from '@/shared/ui';
 import { mockAstronomicalObject } from '../SolarSystem/mock/mockAstronomicalObject';
 import { searchObject } from '../SolarSystem/utill/searchObject';
 import st from './style.module.scss';
-import { AstronomicalModel } from '../AstronomicalModel';
-import { OrbitControls } from '@react-three/drei';
+import { AstronomicalModel } from '@/shared/ui/AstronomucalModel';
 
 const AstronomicalInfo = () => {
   const { current, setCurrent } = useContext(CurrentObjectContext);
   const [object, setObject] = useState<null | IAstronomicalObject>(null);
-
   useEffect(() => {
     if (current !== null)
       setObject(searchObject(current, mockAstronomicalObject));
@@ -22,7 +21,7 @@ const AstronomicalInfo = () => {
 
   return (
     <Modal
-      isOpen={true}
+      isOpen={current !== null}
       onClose={() => {
         if (setCurrent) setCurrent(null);
       }}>
@@ -33,9 +32,9 @@ const AstronomicalInfo = () => {
             {object.pathModel && (
               <div className={st.model}>
                 <Canvas>
-                  <ambientLight intensity={1} color={'white'} />
-                  <AstronomicalModel path={object.pathModel} size={2} />
+                  <ambientLight intensity={2} color={'white'} />
                   <OrbitControls />
+                  <AstronomicalModel pathModel={'venus'} scale={1} />
                 </Canvas>
               </div>
             )}
