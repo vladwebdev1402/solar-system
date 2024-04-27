@@ -40,28 +40,28 @@ const AstronomicalInfo = () => {
           )}
 
           {object.description && (
-            <div className={st.description_block}>
-              <div className={st.heading}>Описание объекта</div>
-              <div className={st.description}>
-                {object.description.paragraphs.map((item) => (
-                  <p key={item}>{item}</p>
-                ))}
+            <>
+              <div className={st.description_block}>
+                <div className={st.heading}>Описание объекта</div>
+                <div className={st.description}>
+                  {object.description.paragraphs.map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-          {object.description && (
-            <div className={st.description_block}>
-              <div className={st.heading}>Основные характеристики</div>
-              <ul className={`${st.description} ${st.decription_list}`}>
-                {object.description.characteristics.map((item) => (
-                  <li className={st.item} key={item.name}>
-                    <span className={st.item_name}>{item.name}</span>
-                    <span> — </span>
-                    <span className={st.item_content}>{item.content}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              <div className={st.description_block}>
+                <div className={st.heading}>Основные характеристики</div>
+                <ul className={`${st.description} ${st.decription_list}`}>
+                  {object.description.characteristics.map((item) => (
+                    <li className={st.item} key={item.name}>
+                      <span className={st.item_name}>{item.name}</span>
+                      <span> — </span>
+                      <span className={st.item_content}>{item.content}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </>
           )}
         </div>
       )}

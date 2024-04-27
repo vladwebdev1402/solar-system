@@ -1,0 +1,42 @@
+.checkbox {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+
+    &:checked + .box::after {
+      opacity: 1;
+    }
+  }
+}
+
+.box {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #b2b2b2;
+  border-radius: 4px;
+  &::after {
+    position: absolute;
+    content: '';
+    left: 4px;
+    top: 4px;
+    background-image: url('../../assets/checkbox.svg');
+    width: 12px;
+    height: 9px;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: 0.3s;
+  }
+}
+
+label {
+  color: white;
+  user-select: none;
+}
